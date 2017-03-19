@@ -53,6 +53,9 @@ class App extends Component {
           user 
           ?
           <div>
+            <section className="ProfileCards">
+              { users && map(users, (usr, uid) => <ProfileCard user={usr} uid={uid} key={uid} />)}
+            </section>
             <CurrentUser user={user} />
           </div>
           :

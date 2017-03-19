@@ -9,8 +9,14 @@ class ProfileCard extends Component {
   }
 
   render() {
+    const { user : { photoURL, displayName }  } = this.props;
     return (
       <article className="ProfileCard">
+        <img 
+          className="ProfileCard--photo"
+          src={photoURL}
+        />
+        <h3>{displayName}</h3>
       </article>
     );
   }
