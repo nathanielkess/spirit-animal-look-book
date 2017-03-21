@@ -6,6 +6,20 @@ import './ProfileCard.css';
 class ProfileCard extends Component {
   constructor(props) {
     super(props);
+
+    this.storageRef = storage.ref('/user-images').child(props.uid);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    const file = event.target.files[0];
+    const uploadTask = this.storageRef
+      .child(file.name)
+      .put(file, { contentType: file.contentType })
+
+
+
   }
 
   render() {
@@ -17,6 +31,11 @@ class ProfileCard extends Component {
           src={photoURL}
         />
         <h3>{displayName}</h3>
+        <FileInput 
+          accept=".png,.gif,.jpg"
+          placeholder="Select an image"
+          onChange={this.handleSubmit}
+        />
       </article>
     );
   }
