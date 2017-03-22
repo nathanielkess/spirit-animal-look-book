@@ -16,7 +16,8 @@ class ProfileCard extends Component {
     const file = event.target.files[0];
     const uploadTask = this.storageRef
       .child(file.name)
-      .put(file, { contentType: file.contentType })
+      .put(file, { contentType: file.contentType });
+
 
     uploadTask.then((snapshot) => {
       this.userRef.child('photoURL').set(snapshot.downloadURL);
