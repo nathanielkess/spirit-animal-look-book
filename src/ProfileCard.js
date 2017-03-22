@@ -8,7 +8,7 @@ class ProfileCard extends Component {
     super(props);
 
     this.storageRef = storage.ref('/user-images').child(props.uid);
-
+    this.userRef = database.ref('/users').child(props.uid);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -18,7 +18,9 @@ class ProfileCard extends Component {
       .child(file.name)
       .put(file, { contentType: file.contentType })
 
-
+    uploadTask.then((snapshot) => {
+      this.userRef.child('photoURL').set(snapshot.downloadURL);
+    });
 
   }
 
